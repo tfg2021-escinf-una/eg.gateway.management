@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  eg.gateway.microservice:
+    image: ${DOCKER_REGISTRY-}eggatewaymicroservice
+    build:
+      context: .
+      dockerfile: Dockerfile
