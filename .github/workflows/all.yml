@@ -1,0 +1,20 @@
+name: .NET Build Application
+on:
+  push:
+    branches-ignore:
+     - main
+     - development
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Check if the application compiles and run the tests.
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore ./src/EG.Gateway.Microservice.csproj
+    - name: Build
+      run: dotnet build ./src/EG.Gateway.Microservice.csproj --no-restore

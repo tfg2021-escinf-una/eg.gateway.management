@@ -10,7 +10,6 @@ RUN dotnet restore "EG.Gateway.Microservice.csproj"
 COPY . .
 WORKDIR "/src/"
 RUN dotnet build "EG.Gateway.Microservice.csproj" -c Release -o /app/build
-#RUN dotnet test ./src/*.sln -c ${Configuration} --no-build --nologo
 
 FROM build AS publish
 RUN dotnet publish "EG.Gateway.Microservice.csproj" -c Release -o /app/publish
