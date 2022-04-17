@@ -13,8 +13,8 @@ RUN dotnet publish ./src/EG.Gateway.Microservice.csproj -c ${Configuration} -o /
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 
-ENV ASPNETCORE_URLS="http://*:80"
-EXPOSE 80/tcp
+ENV ASPNETCORE_URLS="http://*:8081"
+EXPOSE 8081/tcp
 
 RUN mkdir -p /var/app \
     && groupadd -g 2000 container_group \
