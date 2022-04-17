@@ -10,6 +10,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deployment", "deployment", "{E2DB712A-6176-4243-B1CD-F63B170ABCB5}"
 	ProjectSection(SolutionItems) = preProject
 		..\deployment\Dockerfile = ..\deployment\Dockerfile
+		..\deployment\okteto-pipeline.yml = ..\deployment\okteto-pipeline.yml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "branches", "branches", "{BFC366C2-4E7C-4BB2-B945-CDF39D5D905A}"
@@ -22,7 +23,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{4008439B-2C14-4B3A-879D-A1A4FA6DF3F8}"
 	ProjectSection(SolutionItems) = preProject
 		..\deployment\k8s.yml = ..\deployment\k8s.yml
-		..\deployment\prod-k8s.yml = ..\deployment\prod-k8s.yml
 	EndProjectSection
 EndProject
 Global
