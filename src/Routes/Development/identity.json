@@ -1,0 +1,75 @@
+{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/user/login",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-identity-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/user/register",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-identity-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/user/refresh",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-identity-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/refresh",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Role",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-identity-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/role",
+      "UpstreamHttpMethod": [ "Post", "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "SECURITY-TOKEN",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "DownstreamPathTemplate": "/api/Role/{id}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-identity-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/identity/role/{id}",
+      "UpstreamHttpMethod": [ "Delete", "Get", "Put" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "SECURITY-TOKEN",
+        "AllowedScopes": []
+      }
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "*"
+  }
+}

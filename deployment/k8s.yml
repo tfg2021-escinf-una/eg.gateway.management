@@ -1,0 +1,71 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: appsecrets
+type: Opaque
+stringData: 
+  JwtSecretKey: $JwtSecret
+  JwtExpiresIn: "$JwtExpiresIn"
+  JwtRefreshTokenExpiresIn: "$JwtRefreshExpiresIn"
+  JwtIssuer: $JwtIssuer
+  JwtAudience: $JwtAudience
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: eg-gateway-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: eg-gateway-management
+  template:
+    metadata:
+      labels:
+        app: eg-gateway-management
+    spec:
+      containers:
+      - image: inftfg2021/eg.gateway.management:$TAG
+        name: eg-gateway-management
+        env: 
+          - name: ASPNETCORE_ENVIRONMENT
+            value: $ENV
+          - name: Jwt__SecretKey
+            valueFrom:
+              secretKeyRef:
+                name: appsecrets
+                key: JwtSecretKey
+          - name: Jwt__ExpiresIn
+            valueFrom:
+              secretKeyRef:
+                name: appsecrets
+                key: JwtExpiresIn
+          - name: Jwt__RefreshTokenExpiresIn
+            valueFrom:
+              secretKeyRef:
+                name: appsecrets
+                key: JwtRefreshTokenExpiresIn
+          - name: Jwt__Audience
+            valueFrom:
+              secretKeyRef:
+                name: appsecrets
+                key: JwtAudience
+          - name: Jwt__Issuer
+            valueFrom:
+              secretKeyRef:
+                name: appsecrets
+                key: JwtIssuer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: eg-identity-management
+  annotations:
+    dev.okteto.com/auto-ingress: "true"
+spec:
+  type: ClusterIP  
+  ports:
+  - name: "eg-gateway-management"
+    port: 80
+  selector:
+    app: eg-gateway-management
