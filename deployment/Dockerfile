@@ -1,23 +1,28 @@
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
+FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build-env
+ARG Configuration=Release
 
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
-
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
-
-WORKDIR /src
-COPY ["EG.Gateway.Microservice.csproj", "."]
-RUN dotnet restore "EG.Gateway.Microservice.csproj"
 COPY . .
-WORKDIR "/src/"
-RUN dotnet build "EG.Gateway.Microservice.csproj" -c Release -o /app/build
 
-FROM build AS publish
-RUN dotnet publish "EG.Gateway.Microservice.csproj" -c Release -o /app/publish
+#Compiling the application with the .NET SDK.
 
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
+RUN dotnet restore ./src/*.sln
+RUN dotnet build ./src/*.sln --no-restore --nologo -v normal
+RUN dotnet publish ./src/EG.Gateway.Microservice.csproj -c ${Configuration} -o /publish/app --no-build --nologo -v normal
+
+#Build application with runtime .NET image
+
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
+
+ENV ASPNETCORE_URLS="http://*:80"
+EXPOSE 80/tcp
+
+RUN mkdir -p /var/app \
+    && groupadd -g 2000 container_group \
+    && useradd -u 1000 container_user \
+    && chown -R container_user:container_group /var/app
+    
+COPY --from=build-env /publish/app /var/app
+WORKDIR /var/app
+USER container_user
 
 ENTRYPOINT ["dotnet", "EG.Gateway.Microservice.dll"]
