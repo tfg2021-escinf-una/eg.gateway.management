@@ -6,6 +6,8 @@ using Ocelot.DependencyInjection;
 using Ocelot.Middleware;
 using System.IO;
 using EG.Gateway.Microservice.Extensions;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EG.Gateway.Microservice
 {
@@ -36,13 +38,21 @@ namespace EG.Gateway.Microservice
                 {
                     services.AddJwtAuthentication();
                     services.AddOcelot();
+                    services.AddCors(options =>
+                    {
+                        options.AddPolicy("CorePolicy", policy =>
+                        {
+                            policy.AllowAnyOrigin();
+                        });
+                    });
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
                     logging.AddConsole();
                 })
-                .Configure(app =>
+                .Configure(app  =>
                 {
+                    app.UseCors();
                     app.UseOcelot().Wait();
                 });
     }
