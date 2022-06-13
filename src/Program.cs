@@ -38,13 +38,7 @@ namespace EG.Gateway.Microservice
                 {
                     services.AddJwtAuthentication();
                     services.AddOcelot();
-                    services.AddCors(options =>
-                    {
-                        options.AddPolicy("CorePolicy", policy =>
-                        {
-                            policy.AllowAnyOrigin();
-                        });
-                    });
+                    services.AddCors();
                 })
                 .ConfigureLogging((hostingContext, logging) =>
                 {
@@ -52,7 +46,11 @@ namespace EG.Gateway.Microservice
                 })
                 .Configure(app  =>
                 {
-                    app.UseCors();
+                    app.UseCors(x => x
+                     .AllowAnyMethod()
+                     .AllowAnyHeader()
+                     .SetIsOriginAllowed(origin => true) // allow any origin
+                     .AllowCredentials()); // allow credentials
                     app.UseOcelot().Wait();
                 });
     }
