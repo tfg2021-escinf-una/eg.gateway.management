@@ -8,6 +8,7 @@ using System.IO;
 using EG.Gateway.Microservice.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using System;
 
 namespace EG.Gateway.Microservice
 {
@@ -23,16 +24,12 @@ namespace EG.Gateway.Microservice
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .ConfigureAppConfiguration((hostingContext, config) =>
-                {
-                    /**
-                     * Here you should add every json file that contains routes redirection.
-                     * Ocelot will be in charge of redirecting every request.
-                     */
-
+                { 
                     config.SetBasePath(hostingContext.HostingEnvironment.ContentRootPath)
                         .AddJsonFile("appsettings.json", true, true)
-                        .AddJsonFile($"./Routes/{hostingContext.HostingEnvironment.EnvironmentName}/identity.json")
+                        .AddOcelot($"./Routes/{hostingContext.HostingEnvironment.EnvironmentName}/", hostingContext.HostingEnvironment)
                         .AddEnvironmentVariables();
+                        
                 })
                 .ConfigureServices(services =>
                 {
@@ -49,8 +46,8 @@ namespace EG.Gateway.Microservice
                     app.UseCors(x => x
                      .AllowAnyMethod()
                      .AllowAnyHeader()
-                     .SetIsOriginAllowed(origin => true) // allow any origin
-                     .AllowCredentials()); // allow credentials
+                     .SetIsOriginAllowed(origin => true)
+                     .AllowCredentials());
                     app.UseOcelot().Wait();
                 });
     }

@@ -1,0 +1,40 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/vaccines",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "covid-info-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/covid/vaccines",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/worldData",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "covid-info-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/covid/worldData",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/news",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "covid-info-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/covid/news",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ]
+}
