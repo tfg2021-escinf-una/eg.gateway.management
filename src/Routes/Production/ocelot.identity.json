@@ -5,7 +5,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "eg-identity-management-tfg2021-escinf-una.cloud.okteto.net",
+          "Host": "eg-identity-management-service-tfg2021-escinf-una.cloud.okteto.net",
           "Port": 443
         }
       ],
@@ -17,7 +17,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "eg-identity-management-tfg2021-escinf-una.cloud.okteto.net",
+          "Host": "eg-identity-management-service-tfg2021-escinf-una.cloud.okteto.net",
           "Port": 443
         }
       ],
@@ -29,7 +29,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "eg-identity-management-tfg2021-escinf-una.cloud.okteto.net",
+          "Host": "eg-identity-management-service-tfg2021-escinf-una.cloud.okteto.net",
           "Port": 443
         }
       ],
@@ -41,7 +41,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "eg-identity-management-tfg2021-escinf-una.cloud.okteto.net",
+          "Host": "eg-identity-management-service-tfg2021-escinf-una.cloud.okteto.net",
           "Port": 443
         }
       ],
@@ -57,7 +57,7 @@
       "DownstreamScheme": "https",
       "DownstreamHostAndPorts": [
         {
-          "Host": "eg-identity-management-tfg2021-escinf-una.cloud.okteto.net",
+          "Host": "eg-identity-management-service-tfg2021-escinf-una.cloud.okteto.net",
           "Port": 443
         }
       ],

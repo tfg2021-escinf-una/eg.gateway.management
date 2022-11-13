@@ -1,0 +1,56 @@
+﻿{
+  "Routes": [
+    {
+      "DownstreamPathTemplate": "/api/v1/countries",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-geocities-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/geocities/countries",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/countries/{countryId}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-geocities-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/geocities/countries/{countryId}",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/countries/{countryid}/regions",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-geocities-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/geocities/{countryId}/regions",
+      "UpstreamHttpMethod": [ "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/v1/countries/{countryId}/regions/{regioncode}/adminDivisions",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "eg-geocities-management-dev-tfg2021-escinf-una.cloud.okteto.net",
+          "Port": 443
+        }
+      ],
+      "UpstreamPathTemplate": "/geocities/{countryId}/regions/{regioncode}/adminDivisions",
+      "UpstreamHttpMethod": [ "GET" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "*"
+  }
+}
+
