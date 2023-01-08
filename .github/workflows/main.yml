@@ -4,6 +4,10 @@ on:
   push:
     branches:
     - main
+  workflow_dispatch:
+    input:
+      tags:
+        description: 'Scenario tags'
     
 jobs:
   build:
