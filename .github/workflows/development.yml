@@ -4,7 +4,11 @@ on:
   push:
     branches:
     - development
-
+  workflow_dispatch:
+    input:
+      tags:
+        description: 'Scenario tags'
+        
 jobs:
   build:
     runs-on: ubuntu-latest
